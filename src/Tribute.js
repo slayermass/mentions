@@ -6,31 +6,31 @@ import TributeSearch from "./TributeSearch";
 
 class Tribute {
   constructor({
-    values = null,
-    loadingItemTemplate = null,
-    iframe = null,
-    selectClass = "highlight",
-    containerClass = "tribute-container",
-    itemClass = "",
-    trigger = "@",
-    autocompleteMode = false,
-    autocompleteSeparator = null,
-    selectTemplate = null,
-    menuItemTemplate = null,
-    lookup = "key",
-    fillAttr = "value",
-    collection = null,
-    menuContainer = null,
-    noMatchTemplate = null,
-    requireLeadingSpace = true,
-    allowSpaces = false,
-    replaceTextSuffix = null,
-    positionMenu = true,
-    spaceSelectsMatch = false,
-    searchOpts = {},
-    menuItemLimit = null,
-    menuShowMinLength = 0
-  }) {
+                values = null,
+                loadingItemTemplate = null,
+                iframe = null,
+                selectClass = "highlight",
+                containerClass = "tribute-container",
+                itemClass = "",
+                trigger = "@",
+                autocompleteMode = false,
+                autocompleteSeparator = null,
+                selectTemplate = null,
+                menuItemTemplate = null,
+                lookup = "key",
+                fillAttr = "value",
+                collection = null,
+                menuContainer = null,
+                noMatchTemplate = null,
+                requireLeadingSpace = true,
+                allowSpaces = false,
+                replaceTextSuffix = null,
+                positionMenu = true,
+                spaceSelectsMatch = false,
+                searchOpts = {},
+                menuItemLimit = null,
+                menuShowMinLength = 0
+              }) {
     this.autocompleteMode = autocompleteMode;
     this.autocompleteSeparator = autocompleteSeparator;
     this.menuSelected = 0;
@@ -89,7 +89,7 @@ class Tribute {
 
             return (
               noMatchTemplate ||
-              function() {
+              function () {
                 return "<li>No Match Found!</li>";
               }.bind(this)
             );
@@ -146,7 +146,7 @@ class Tribute {
 
             return (
               noMatchTemplate ||
-              function() {
+              function () {
                 return "<li>No Match Found!</li>";
               }.bind(this)
             );
@@ -254,7 +254,9 @@ class Tribute {
 
   ensureEditable(element) {
     if (Tribute.inputTypes().indexOf(element.nodeName) === -1) {
-      if (!element.contentEditable) {
+      if (element.contentEditable) {
+        element.contentEditable = true;
+      } else {
         throw new Error("[Tribute] Cannot bind to " + element.nodeName + ", not contentEditable");
       }
     }
@@ -344,7 +346,7 @@ class Tribute {
           typeof this.current.collection.noMatchTemplate === "function"
             ? (ul.innerHTML = this.current.collection.noMatchTemplate())
             : (ul.innerHTML = this.current.collection.noMatchTemplate);
-            this.range.positionMenuAtCaret(scrollTo);
+          this.range.positionMenuAtCaret(scrollTo);
         }
 
         return;
