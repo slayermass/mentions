@@ -107,7 +107,9 @@ class TributeEvents {
     }
     instance.updateSelection(this);
 
-    if (event.keyCode === 27) return;
+    if (event.keyCode === 27 || event.key === 'Control'|| event.key === 'Cmd') {
+      return;
+    }
 
     if (!instance.tribute.allowSpaces && instance.tribute.hasTrailingSpace) {
       instance.tribute.hasTrailingSpace = false;

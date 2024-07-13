@@ -126,7 +126,12 @@ class TributeEvents {
     }
     instance.updateSelection(this);
 
-    if (event.keyCode === 27) return;
+    console.log('keyup', event);
+
+    if (event.keyCode === 27 || event.key === 'Control'|| event.key === 'Cmd') {
+      return;
+    }
+    console.log('p0');
 
     if (!instance.tribute.allowSpaces && instance.tribute.hasTrailingSpace) {
       instance.tribute.hasTrailingSpace = false;
@@ -134,6 +139,7 @@ class TributeEvents {
       instance.callbacks()["space"](event, this);
       return;
     }
+    console.log('p1');
 
     if (!instance.tribute.isActive) {
       if (instance.tribute.autocompleteMode) {
@@ -152,6 +158,7 @@ class TributeEvents {
         }
       }
     }
+    console.log('p2');
 
     if (
       instance.tribute.current.mentionText.length <
@@ -159,6 +166,15 @@ class TributeEvents {
     ) {
       return;
     }
+
+    // if (
+    //   !TributeEvents.keys().map(v => v.key).includes(event.keyCode)
+    //   || event.key === instance.tribute.current.trigger
+    // ) {
+    //   return;
+    // }
+
+    console.log('GO', event.key === instance.tribute.current.trigger, instance.tribute.current.trigger,TributeEvents.keys().map(v => v.key).includes(event.keyCode));
 
     if (
       ((instance.tribute.current.trigger ||
@@ -1502,6 +1518,8 @@ class Tribute {
       element.tributeMenu = this.menu;
       this.menuEvents.bind(this.menu);
     }
+
+    console.log('showMenuFor');
 
     this.isActive = true;
     this.menuSelected = 0;

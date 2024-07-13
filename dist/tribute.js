@@ -1,3 +1,5 @@
+
+(function(l, r) { if (!l || l.getElementById('livereloadscript')) return; r = l.createElement('script'); r.async = 1; r.src = '//' + (self.location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1'; r.id = 'livereloadscript'; l.getElementsByTagName('head')[0].appendChild(r) })(self.document);
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
@@ -187,7 +189,13 @@
         }
 
         instance.updateSelection(this);
-        if (event.keyCode === 27) return;
+        console.log('keyup', event);
+
+        if (event.keyCode === 27 || event.key === 'Control' || event.key === 'Cmd') {
+          return;
+        }
+
+        console.log('p0');
 
         if (!instance.tribute.allowSpaces && instance.tribute.hasTrailingSpace) {
           instance.tribute.hasTrailingSpace = false;
@@ -195,6 +203,8 @@
           instance.callbacks()["space"](event, this);
           return;
         }
+
+        console.log('p1');
 
         if (!instance.tribute.isActive) {
           if (instance.tribute.autocompleteMode) {
@@ -212,9 +222,21 @@
           }
         }
 
+        console.log('p2');
+
         if (instance.tribute.current.mentionText.length < instance.tribute.current.collection.menuShowMinLength) {
           return;
-        }
+        } // if (
+        //   !TributeEvents.keys().map(v => v.key).includes(event.keyCode)
+        //   || event.key === instance.tribute.current.trigger
+        // ) {
+        //   return;
+        // }
+
+
+        console.log('GO', event.key === instance.tribute.current.trigger, instance.tribute.current.trigger, TributeEvents.keys().map(function (v) {
+          return v.key;
+        }).includes(event.keyCode));
 
         if ((instance.tribute.current.trigger || instance.tribute.autocompleteMode) && instance.commandEvent === false || instance.tribute.isActive && event.keyCode === 8) {
           instance.tribute.showMenuFor(this, true);
@@ -1510,6 +1532,7 @@
           this.menuEvents.bind(this.menu);
         }
 
+        console.log('showMenuFor');
         this.isActive = true;
         this.menuSelected = 0;
 
