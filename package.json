@@ -35,7 +35,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/zurb/tribute.git"
+    "url": "git@github.com:slayermass/mentions.git"
   },
   "scripts": {
     "build": "rollup -c",
@@ -43,7 +43,7 @@
     "test": "karma start test/karma.conf.js",
     "test-single-run": "karma start test/karma.conf.js --single-run --browsers ChromeHeadless"
   },
-  "author": "Jordan Humphreys <jordan@zurb.com>",
+  "author": "Slayermass",
   "license": "MIT",
   "dependencies": {}
 }
